@@ -38,7 +38,6 @@ namespace Shop.Catalog.Mapping
             CreateMap<ProductImage, CreateProductImageDTO>().ReverseMap();
             CreateMap<ProductImage, GetByIdProductImageDTO>().ReverseMap();
             #endregion
-
         }
     }
 }

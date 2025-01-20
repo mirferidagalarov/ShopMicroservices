@@ -1,6 +1,35 @@
+using Microsoft.Extensions.Options;
+using Shop.Catalog.Mapping;
+using Shop.Catalog.Services.CategoryServices;
+using Shop.Catalog.Services.ProductDetailServices;
+using Shop.Catalog.Services.ProductImageServices;
+using Shop.Catalog.Services.ProductServices;
+using Shop.Catalog.Settings.Abstract;
+using Shop.Catalog.Settings.Concrete;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+#region DPInjection
+builder.Services.AddScoped<ICategoryService,CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
+builder.Services.AddScoped<IProductImageService, ProductImageService>();
+#endregion
+
+#region AutoMapper
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+#endregion
+
+#region MongoDBConfiguration
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
+builder.Services.AddScoped<IDatabaseSettings>(sp =>
+{
+    return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+});
+#endregion
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
