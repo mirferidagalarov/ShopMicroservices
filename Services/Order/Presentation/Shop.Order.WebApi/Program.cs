@@ -1,3 +1,7 @@
+using Shop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
+using Shop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
+using Shop.Order.Application.Features.CQRS.Queries.AddressQueries;
+
 namespace Shop.Order.WebApi
 {
     public class Program
@@ -7,6 +11,22 @@ namespace Shop.Order.WebApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddScoped<GetAddressQueryHandler>();
+            builder.Services.AddScoped<GetAddressByIdQueryHandler>();
+            builder.Services.AddScoped<CreateAddressCommandHandler>();
+            builder.Services.AddScoped<UpdateAddressCommandHandler>();
+            builder.Services.AddScoped<RemoveAddressCommandHandler>();
+
+
+            builder.Services.AddScoped<GetOrderDetailQueryHandler>();
+            builder.Services.AddScoped<GetOrderDetailByIdQueryHandler>();
+            builder.Services.AddScoped<CreateOrderDetailCommandHandler>();
+            builder.Services.AddScoped<UpdateOrderDetailCommandHandler>();
+            builder.Services.AddScoped<RemoveOrderDetailCommandHandler>();
+
+
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

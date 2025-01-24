@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Shop.Order.Application.Features.CQRS.Handlers.AddressHandlers
 {
-    public class RemoveAddressComandHandler
+    public class RemoveAddressCommandHandler
     {
         private readonly IRepository<Address> _repository;
 
-        public RemoveAddressComandHandler(IRepository<Address> repository)
+        public RemoveAddressCommandHandler(IRepository<Address> repository)
         {
             _repository = repository;
         }

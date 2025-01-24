@@ -45,7 +45,7 @@ namespace Shop.Order.Persistence.Repositories
             return await _orderContext.Set<T>().FindAsync(id);
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity) 
         {
             _orderContext.Set<T>().Update(entity);
             await _orderContext.SaveChangesAsync();
