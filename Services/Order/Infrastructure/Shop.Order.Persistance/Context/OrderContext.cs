@@ -12,7 +12,7 @@ namespace Shop.Order.Persistence.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=..;Initial Catalog=ShopOrderDb Integrated Security=true");
+            optionsBuilder.UseSqlServer("Server=localhost,1440;Initial Catalog=ShopOrderDb;User=SA;Password=123456789aA!");
             base.OnConfiguring(optionsBuilder);
         }
 

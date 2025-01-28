@@ -1,6 +1,10 @@
 using Shop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 using Shop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
 using Shop.Order.Application.Features.CQRS.Queries.AddressQueries;
+using Shop.Order.Application.Interfaces;
+using Shop.Order.Application.Services;
+using Shop.Order.Persistence.Context;
+using Shop.Order.Persistence.Repositories;
 
 namespace Shop.Order.WebApi
 {
@@ -12,6 +16,7 @@ namespace Shop.Order.WebApi
 
             // Add services to the container.
 
+            #region DPInjection
             builder.Services.AddScoped<GetAddressQueryHandler>();
             builder.Services.AddScoped<GetAddressByIdQueryHandler>();
             builder.Services.AddScoped<CreateAddressCommandHandler>();
@@ -24,8 +29,12 @@ namespace Shop.Order.WebApi
             builder.Services.AddScoped<CreateOrderDetailCommandHandler>();
             builder.Services.AddScoped<UpdateOrderDetailCommandHandler>();
             builder.Services.AddScoped<RemoveOrderDetailCommandHandler>();
+            #endregion
 
 
+            builder.Services.AddDbContext<OrderContext>();
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddApplicationService(builder.Configuration);
 
 
             builder.Services.AddControllers();
