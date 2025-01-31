@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Shop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
 using Shop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
 using Shop.Order.Application.Features.CQRS.Queries.AddressQueries;
@@ -31,6 +32,14 @@ namespace Shop.Order.WebApi
             builder.Services.AddScoped<RemoveOrderDetailCommandHandler>();
             #endregion
 
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.Authority = builder.Configuration["IdentityServerUrl"];
+                opt.Audience = "ResourceOrder";
+                opt.RequireHttpsMetadata = false;
+            });
+
+
 
             builder.Services.AddDbContext<OrderContext>();
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -53,6 +62,8 @@ namespace Shop.Order.WebApi
 
             app.UseHttpsRedirection();
 
+
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
 

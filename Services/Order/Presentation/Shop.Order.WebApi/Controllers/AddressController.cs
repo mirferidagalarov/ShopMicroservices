@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Order.Application.Features.CQRS.Commands.AddressCommands;
 using Shop.Order.Application.Features.CQRS.Handlers.AddressHandlers;
@@ -6,6 +7,7 @@ using Shop.Order.Application.Features.CQRS.Queries.AddressQueries;
 
 namespace Shop.Order.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AddressController : ControllerBase

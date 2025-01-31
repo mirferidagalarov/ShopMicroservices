@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Shop.Discount.Context;
 using Shop.Discount.Services.DiscountService;
 using Shop.Discount.Services.DiscountServices;
@@ -11,6 +12,14 @@ namespace Shop.Discount
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.Authority = builder.Configuration["IdentityServerUrl"];
+                opt.Audience = "ResourceDiscount";
+                opt.RequireHttpsMetadata = false;
+
+            });
 
             builder.Services.AddTransient<DapperContext>();
             builder.Services.AddTransient<IDiscountService, DiscountService>();
@@ -31,6 +40,7 @@ namespace Shop.Discount
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();    
             app.UseAuthorization();
 
 

@@ -12,9 +12,9 @@
     "Shop.Catalog": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7273;http://localhost:5102",
+      "applicationUrl": "https://localhost:7000;",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
