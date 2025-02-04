@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Cargo.Business.Abstract;
 using Shop.DTOs.CargoCompanyDTOs;
@@ -8,6 +9,7 @@ namespace Shop.Cargo.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CargoCompanyController : ControllerBase
     {
         private readonly ICargoCompanyService _cargoCompanyService;

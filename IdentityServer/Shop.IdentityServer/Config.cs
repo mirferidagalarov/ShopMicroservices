@@ -23,9 +23,19 @@ namespace Shop.IdentityServer
                 Scopes={ "DiscountFullPermission", "DiscountReadPermission" }
             },
 
-              new ApiResource("ResourceOrder")
+             new ApiResource("ResourceOrder")
             {
                 Scopes={ "OrderFullPermission", "OrderReadPermission" }
+            },
+
+             new ApiResource("ResourceCargo")
+            {
+                Scopes={ "CargoFullPermission",}
+            },
+
+             new ApiResource("ResourceBasket")
+            {
+                Scopes={ "BasketFullPermission",}
             },
               new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
@@ -45,6 +55,8 @@ namespace Shop.IdentityServer
             new ApiScope("DiscountReadPermission","Reading Authority for discount operations"),
             new ApiScope("OrderFullPermission","Full Authority for order operations"),
             new ApiScope("OrderReadPermission","Reading Authority for order operations"),
+            new ApiScope("CargoFullPermission","Full Authority for cargo operations"),
+            new ApiScope("BasketFullPermission","Full Authority for basket operations"),
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -65,7 +77,7 @@ namespace Shop.IdentityServer
             {
                     ClientId="ShopManagerId",
                     ClientName="Shop Manager User",
-                    AllowedGrantTypes=GrantTypes.ClientCredentials,
+                    AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
                     ClientSecrets={new Secret("shopsecret".Sha256()) },
                     AllowedScopes={"CatalogFullPermission" }
             },
@@ -75,13 +87,13 @@ namespace Shop.IdentityServer
             {
                     ClientId="ShopAdminId",
                     ClientName="Shop Admin User",
-                    AllowedGrantTypes=GrantTypes.ClientCredentials,
+                    AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
                     ClientSecrets={new Secret("shopsecret".Sha256()) },
-                    AllowedScopes={"CatalogFullPermission", "DiscountFullPermission", "OrderFullPermission",
-                     
+                    AllowedScopes={"CatalogFullPermission", "DiscountFullPermission", "OrderFullPermission","CargoFullPermission","BasketFullPermission",
+
                     IdentityServerConstants.LocalApi.ScopeName,
                     IdentityServerConstants.StandardScopes.Email,
-                    IdentityServerConstants.StandardScopes.OpenId,  
+                    IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     },
                     AccessTokenLifetime=600
