@@ -6,7 +6,8 @@ using Shop.Catalog.Services.CategoryServices;
 
 namespace Shop.Catalog.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
