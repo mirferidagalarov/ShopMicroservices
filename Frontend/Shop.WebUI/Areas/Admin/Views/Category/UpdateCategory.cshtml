@@ -1,25 +1,24 @@
-﻿@model CreateCategoryDTO
-
+﻿@model UpdateCategoryDTO
 @{
-    ViewData["Title"] = "CreateCategory";
+    ViewData["Title"] = "UpdateCategory";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
+
 
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="chart-box">
-               
-                <div class="bs-example" data-example-id="simple-table">
                     <form method="post">
+                        <label>CategoryId</label>
+                        <input type="text" readonly class="form-control" asp-for="CategoryId">
+                        <br />
                         <label>CategoryName</label>
                         <input type="text" class="form-control" asp-for="CategoryName">
-                         <br/>
-                         <button class="btn btn-primary">Add Category</button>
+                        <br />
+                        <button class="btn btn-primary">Edit Category</button>
                     </form>
-                </div>
             </div>
         </div>
     </div>
 </section>
-
